@@ -1,18 +1,13 @@
 import "dotenv/config";
 import fastify from "fastify";
+import { TaskRoute } from "./routes/route_task";
 
 const app = fastify();
-
-app.get("/", async () => {
-    return "test";
-});
-
-const PORT = process.env.PORT;
-const HOST = process.env.HOST;
+app.register(TaskRoute);
 
 app.listen({
-    port: typeof PORT === "string" ? Number(PORT) : 5050,
-    host: typeof HOST === "string" ? HOST : "0.0.0.0",
+    port: typeof process.env.PORT === "string" ? Number(process.env.PORT) : 5050,
+    host: typeof process.env.HOST === "string" ? process.env.HOST : "0.0.0.0",
 }).then(() => {
-    console.log(`Servidor rodando na url http://${HOST}:${PORT}`);
+    console.log(`Servidor rodando na url http://localhost:${process.env.PORT}`);
 });
