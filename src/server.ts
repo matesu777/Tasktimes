@@ -1,9 +1,11 @@
 import "dotenv/config";
 import fastify from "fastify";
 import { TaskRoute } from "./routes/route_task";
+import { UserRoute } from "./routes/route_user";
 
 const app = fastify();
 app.register(TaskRoute);
+app.register(UserRoute);
 
 app.listen({
     port: typeof process.env.PORT === "string" ? Number(process.env.PORT) : 5050,
