@@ -1,4 +1,4 @@
-import { FastifyInstance } from "fastify";
+import type { FastifyInstance } from "fastify";
 import { TaskController } from "../controllers/task_controller";
 
 export const TaskRoute = async (app: FastifyInstance) => {
