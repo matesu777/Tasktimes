@@ -1,7 +1,7 @@
 import "dotenv/config";
 import fastify from "fastify";
-import { TaskRoute } from "./routes/route_task";
-import { UserRoute } from "./routes/route_user";
+import { TaskRoute } from "./modules/routes/route_task";
+import { UserRoute } from "./modules/routes/route_user";
 
 const app = fastify();
 app.register(TaskRoute);

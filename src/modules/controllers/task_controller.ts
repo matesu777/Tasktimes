@@ -1,5 +1,5 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
-import type { TaskCreateInput, TaskUpdateInput } from "../../generated/prisma/models";
+import type { TaskCreateInput, TaskUpdateInput } from "../../../generated/prisma/models";
 import { TaskServices, type TaskStatus } from "../services/task_service";
 
 export class TaskController {
