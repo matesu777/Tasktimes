@@ -14,10 +14,13 @@ export class UserService {
         });
     }
     static async delete(id: number) {
-        return prisma.user.delete({ where: { id } });
+        await prisma.task.deleteMany({
+            where: { authorID: id },
+        });
+        return prisma.user.delete({ where: { id: id } });
     }
     static async getUser(id: number) {
-        return prisma.user.findUnique({ where: { id } });
+        return prisma.user.findUnique({ where: { id: id } });
     }
     static async update(id: number, data: UserUpdateInput) {
         return prisma.user.update({
