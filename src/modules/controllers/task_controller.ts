@@ -15,7 +15,7 @@ export class TaskController {
         return reply.status(201).send({ message: "Tarefa Criada" });
     }
     static async update(req: FastifyRequest<{ Params: { id: string }; Body: TaskUpdateInput }>, reply: FastifyReply) {
-        const id = Number(req.id);
+        const id = Number(req.params.id);
         if (isNaN(id)) {
             return reply.status(400).send({ message: "ID invalido" });
         }
@@ -26,7 +26,7 @@ export class TaskController {
         req: FastifyRequest<{ Params: { id: string }; Body: { status: TaskStatus } }>,
         reply: FastifyReply,
     ) {
-        const id = Number(req.id);
+        const id = Number(req.params.id);
         if (isNaN(id)) {
             return reply.status(400).send({ message: "ID invalido" });
         }
