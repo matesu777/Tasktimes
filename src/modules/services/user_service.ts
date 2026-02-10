@@ -1,15 +1,26 @@
 import type { UserCreateInput, UserUpdateInput } from "../../../generated/prisma/models";
 import { prisma } from "../../lib/prisma";
+import { hashPassword } from "../../utils/password";
 
-prisma;
 export class UserService {
     static async getAll() {
         return prisma.user.findMany();
     }
     static async create(data: UserCreateInput) {
+        const hashpass = await hashPassword(data.password);
+        const userExists = await prisma.user.findFirst({
+            where: {
+                OR: [{ email: data.email }, { username: data.username }],
+            },
+        });
+
+        if (userExists) {
+            throw new Error("EMAIL_OR_USERNAME_ALREADY_EXISTS");
+        }
         return prisma.user.create({
             data: {
                 ...data,
+                password: hashpass,
             },
         });
     }

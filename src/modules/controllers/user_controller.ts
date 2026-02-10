@@ -11,8 +11,16 @@ export class UserController {
         return reply.status(200).send(users);
     }
     static async create(req: FastifyRequest<{ Body: UserCreateInput }>, reply: FastifyReply) {
-        await UserService.create(req.body);
-        return reply.status(201).send({ message: "User Criado" });
+        try {
+            await UserService.create(req.body);
+            return reply.status(201).send({ message: "User criado" });
+        } catch (err: any) {
+            if (err.message === "EMAIL_OR_USERNAME_ALREADY_EXISTS") {
+                return reply.status(409).send({
+                    message: "Email ou username já está em uso",
+                });
+            }
+        }
     }
     static async delete(req: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) {
         const id = Number(req.params.id);

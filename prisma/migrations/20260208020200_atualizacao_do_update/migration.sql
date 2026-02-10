@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Task" ALTER COLUMN "updateAt" DROP DEFAULT;
+
+-- AlterTable
+ALTER TABLE "User" ALTER COLUMN "updateAt" DROP DEFAULT;

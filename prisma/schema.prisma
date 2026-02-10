@@ -23,7 +23,7 @@ model User {
   tasks     Task[]
 
   createAt  DateTime      @default(now())
-  updateAt  DateTime      @default(now())
+  updateAt  DateTime      @updatedAt
 }
 
 
@@ -39,7 +39,7 @@ model Task {
   complete  Boolean     @default(false)
 
   createAt  DateTime    @default(now())
-  updateAt  DateTime    @default(now())
+  updateAt  DateTime    @updatedAt
 
   author    User        @relation(fields: [authorID], references: [id])
   authorID  Int
