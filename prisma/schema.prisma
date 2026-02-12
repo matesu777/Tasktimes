@@ -14,33 +14,34 @@ datasource db {
 }
 
 model User {
-  id        Int           @id @default(autoincrement())
-  username  String        @unique
-  email     String        @unique
-  name      String
-  password  String
-  rank      String        @default("Ferro")
-  tasks     Task[]
+  id         Int           @id @default(autoincrement())
+  username   String        @unique
+  email      String        @unique
+  name       String
+  password   String
+  points     Int           @default(0)
+  tasks      Task[]
 
-  createAt  DateTime      @default(now())
-  updateAt  DateTime      @updatedAt
+  createAt   DateTime      @default(now())
+  updateAt   DateTime      @updatedAt
 }
 
 
 
 
 model Task {
-  id        Int         @id @default(autoincrement())
+  id         Int         @id @default(autoincrement())
 
-  title     String
-  content   String?
+  title      String
+  content    String?
 
-  status    String      @default("pending")
-  complete  Boolean     @default(false)
+  status     String      @default("pending")
+  difficulty String      @default("medium")
+  complete   Boolean     @default(false)
 
-  createAt  DateTime    @default(now())
-  updateAt  DateTime    @updatedAt
+  createAt   DateTime    @default(now())
+  updateAt   DateTime    @updatedAt
 
-  author    User        @relation(fields: [authorID], references: [id])
-  authorID  Int
+  author     User        @relation(fields: [authorID], references: [id])
+  authorID   Int
 }
